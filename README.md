@@ -5,7 +5,7 @@ workload, pick a policy, and watch the simulation unfold tick by tick — with
 lecture-style Gantt tables, a live ready queue, and turnaround metrics for every
 algorithm.
 
-Live demo: [CPU Scheduling Algorithms Visualizer](https://cpu-scheduling-algorithms-visualizer.onrender.com)
+Live demo: [CPU Scheduling Algorithms Visualizer](https://cpu-scheduling-algorithms-visualizer.onrender)
 
 Repository: [ammdevl@github:cpu-scheduling-algorithms-visualizer](https://github.com/ammdevl/cpu-scheduling-algorithms-visualizer)
 
@@ -139,10 +139,22 @@ the new rule here.
 
 ## Deployment
 
-The app is fully static. Build and serve anywhere that hosts static files, or
-push to Vercel/Netlify/Render with the default Next.js settings:
+The app uses Next.js static export (`output: "export"` in `next.config.ts`):
+`npm run build` emits a fully static `out/` directory (with directory-style
+URLs via `trailingSlash: true`), so it hosts anywhere that serves static
+files.
+
+**Render (Static Site) settings:**
+
+| Setting | Value |
+| --- | --- |
+| Build command | `npm install && npm run build` |
+| Publish directory | `out` |
+
+Other hosts (Vercel/Netlify/Render Web Service) work with the default Next.js
+settings too. To preview the production build locally:
 
 ```bash
 npm run build
-npm run start   # or deploy the generated build
+npm run start   # serves the out/ directory
 ```

@@ -72,6 +72,10 @@ until ready.
 - **Validation**: engines throw on invalid input (empty list, duplicate ids,
   non-integer or out-of-range times). UI must catch and display errors, never
   crash. RR/Feedback quanta are clamped to a minimum of 1 by design.
+- **Static export**: `next.config.ts` uses `output: "export"` +
+  `trailingSlash: true`; the build emits static HTML to `out/`. No server
+  features (no server actions, dynamic APIs, or `next start`) — keep pages
+  statically prerenderable. `npm run start` serves `out/` via `serve`.
 - **Adding an algorithm**: engine file + registry entry (with `how`/`note`) +
   golden tests from a trusted reference + entry in README's algorithm list.
   Follow the existing non-preemptive/preemptive engine patterns.
