@@ -5,7 +5,7 @@ workload, pick a policy, and watch the simulation unfold tick by tick — with
 lecture-style Gantt tables, a live ready queue, and turnaround metrics for every
 algorithm.
 
-Live demo: [CPU Scheduling Algorithms Visualizer](https://cpu-scheduling-algorithms-visualizer.onrender)
+Live demo: [CPU Scheduling Algorithms Visualizer](https://cpu-scheduling-algorithms-visualizer.onrender.com)
 
 Repository: [ammdevl@github:cpu-scheduling-algorithms-visualizer](https://github.com/ammdevl/cpu-scheduling-algorithms-visualizer)
 
