@@ -1,0 +1,247 @@
+@use '@/styles/tokens';
+
+.page {
+  width: min(1080px, 100% - 2rem);
+  margin-inline: auto;
+  padding-block: 3.5rem 4rem;
+  display: grid;
+  gap: 4rem;
+}
+
+.hero {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 1.1rem;
+  padding-block: 1rem;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  max-width: 22ch;
+}
+
+.accent {
+  color: var(--primary);
+}
+
+.lede {
+  max-width: 60ch;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-size: 1.02rem;
+}
+
+.cta {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primary,
+.secondary {
+  border-radius: 999px;
+  padding: 11px 26px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.primary {
+  background: var(--primary);
+  color: var(--primary-contrast);
+  box-shadow: var(--shadow-md);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.secondary {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+
+  &:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+.sectionTitle {
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+}
+
+.features {
+  border-top: 1px solid var(--border);
+}
+
+.featureRow {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 1.1rem;
+  padding: 1.5rem 0.25rem;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.num {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  padding-top: 2px;
+}
+
+.featureBody {
+  display: grid;
+  gap: 0.4rem;
+
+  h3 {
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    max-width: 68ch;
+  }
+}
+
+.chips {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr;
+
+  @include tokens.md-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  > div {
+    height: 100%;
+  }
+}
+
+.chip {
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: tokens.$radius-md;
+  background: var(--surface);
+  padding: 0.95rem 1.1rem;
+  display: grid;
+  gap: 0.25rem;
+  align-content: center;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  em {
+    font-style: normal;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.steps {
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  gap: 1.25rem;
+  max-width: 72ch;
+
+  li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 3rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+
+    &::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      font-size: 0.95rem;
+    }
+
+    strong {
+      color: var(--text);
+    }
+  }
+}
+
+.tableScroll {
+  margin-top: 0.75rem;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.miniTable {
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: tokens.$radius-sm;
+  overflow: hidden;
+
+  table {
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    font-family: var(--font-geist-mono), monospace;
+  }
+
+  th,
+  td {
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+    background: var(--surface);
+    white-space: nowrap;
+  }
+
+  th {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  td:first-child,
+  th:first-child {
+    text-align: left;
+    font-family: var(--font-geist-sans), sans-serif;
+    color: var(--text-muted);
+  }
+}
