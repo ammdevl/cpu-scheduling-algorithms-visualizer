@@ -1,0 +1,50 @@
+@use '@/styles/tokens';
+
+.wrap {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+
+  code {
+    font-family: var(--font-geist-mono), monospace;
+    background: var(--surface-2);
+    border-radius: 4px;
+    padding: 1px 6px;
+    color: var(--text);
+  }
+}
+
+.wrap select,
+.wrap input[type='range'] {
+  accent-color: var(--primary);
+}
+
+.wrap select {
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: tokens.$radius-sm;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+
+  &:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: -1px;
+  }
+}
+
+.wrap input[type='range'] {
+  width: 100%;
+}

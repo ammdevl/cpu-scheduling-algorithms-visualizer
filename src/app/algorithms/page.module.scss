@@ -1,0 +1,25 @@
+@use '@/styles/tokens';
+
+.page {
+  width: min(1280px, 100% - 2rem);
+  margin-inline: auto;
+  padding-block: 2.5rem 4rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.header {
+  display: grid;
+  gap: 0.5rem;
+
+  h1 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    color: var(--text-muted);
+    max-width: 70ch;
+    line-height: 1.6;
+  }
+}

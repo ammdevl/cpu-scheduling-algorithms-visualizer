@@ -1,0 +1,139 @@
+@use '@/styles/tokens';
+
+.wrap {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  h3 {
+    font-size: 0.95rem;
+  }
+}
+
+.count {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-soft);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.footer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.reset,
+.add,
+.remove {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: tokens.$radius-sm;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+
+  &:hover {
+    border-color: var(--primary);
+  }
+}
+
+.footer .add {
+  flex: 1;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  border-color: var(--primary);
+  font-weight: 600;
+  padding: 8px 10px;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+}
+
+.footer .reset {
+  color: var(--text-muted);
+
+  &:hover {
+    color: var(--text);
+  }
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+
+  th {
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    padding: 4px 8px 6px;
+  }
+
+  td {
+    padding: 3px 4px;
+  }
+
+  input {
+    width: 100%;
+    min-width: 64px;
+    padding: 7px 9px;
+    border: 1px solid var(--border);
+    border-radius: tokens.$radius-sm;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.85rem;
+
+    &:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: -1px;
+    }
+  }
+}
+
+.rowError input {
+  border-color: var(--warn);
+  background: var(--warn-soft);
+}
+
+.remove {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--text-muted);
+
+  &:hover:not(:disabled) {
+    color: var(--warn);
+    border-color: var(--warn);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  font-size: 0.8rem;
+  color: var(--warn);
+}
