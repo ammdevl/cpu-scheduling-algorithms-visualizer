@@ -143,6 +143,19 @@ If you change an engine, every test must stay green. If you intentionally
 change a scheduling convention, update the fixtures deliberately and document
 the new rule here.
 
+## Documentation
+
+Full project documentation lives in [`docs/`](./docs/):
+
+| Document | Contents |
+| --- | --- |
+| [Architecture](./docs/architecture.md) | Layers, modules, state management, design decisions |
+| [System flow](./docs/system-flow.md) | End-to-end flow from process input to rendered playback |
+| [Algorithms](./docs/algorithms.md) | All six policies, exact conventions, golden fixtures |
+| [Data model](./docs/data-model.md) | Core types, simulation result shape, store and persistence |
+| [Contributing](./docs/contributing.md) | Setup, conventions, accessibility standards, testing rules |
+| [Deployment](./docs/deployment.md) | Static export, Render configuration, headers, SEO artifacts |
+
 ## Deployment
 
 The app uses Next.js static export (`output: "export"` in `next.config.ts`):
