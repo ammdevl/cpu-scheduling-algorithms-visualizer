@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
 };
 
-const bootstrapScript = `(function(){try{var t=localStorage.getItem('csv-theme');if(t!=='dark'&&t!=='light'){t='light';}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="viewport"]');var s=Math.min(1,(window.screen.width||1280)/1280);if(m){m.setAttribute('content','width=1280, initial-scale='+s);}}catch(e){}})();`;
+const bootstrapScript = `(function(){try{var t=localStorage.getItem('csv-theme');if(t!=='dark'&&t!=='light'){t='light';}document.documentElement.dataset.theme=t;}catch(e){}})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
