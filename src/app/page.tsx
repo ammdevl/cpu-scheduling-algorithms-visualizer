@@ -9,6 +9,23 @@ export const viewport: Viewport = {
   width: 1280,
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'CPU Scheduling Algorithms Visualizer',
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Any (web browser)',
+  description:
+    'Interactive step-by-step visualizer for the classic CPU scheduling algorithms: FCFS, Round Robin, Shortest Process Next, Shortest Remaining Time, Highest Response Ratio Next and Feedback.',
+  url: 'https://cpu-scheduling-algorithms-visualizer.onrender.com/',
+  browserRequirements: 'Requires JavaScript',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
+
 const MOCK_ROWS = [
   { id: 'A', cells: [0, 1, 3] },
   { id: 'B', cells: [2, 5] },
@@ -40,7 +57,11 @@ const CAPABILITIES = [
 
 export default function Home() {
   return (
-    <main className={styles.page}>
+    <main id="main" className={styles.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className={styles.hero}>
         <div className={styles.blobA} aria-hidden="true" />
         <div className={styles.blobB} aria-hidden="true" />

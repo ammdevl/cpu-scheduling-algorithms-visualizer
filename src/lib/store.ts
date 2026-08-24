@@ -34,8 +34,12 @@ export function processRowError(p: ProcessInput, all: ProcessInput[]): string | 
   if (!p.id.trim()) return 'Name is required';
   const dup = all.filter((q) => q.id.trim().toUpperCase() === p.id.trim().toUpperCase());
   if (dup.length > 1) return 'Duplicate name';
-  if (!Number.isInteger(p.arrival) || p.arrival < 0) return 'Arrival must be an integer ≥ 0';
-  if (!Number.isInteger(p.service) || p.service < 1) return 'Service must be an integer ≥ 1';
+  if (!Number.isInteger(p.arrival) || p.arrival < 0 || p.arrival > 999) {
+    return 'Arrival must be an integer between 0 and 999';
+  }
+  if (!Number.isInteger(p.service) || p.service < 1 || p.service > 500) {
+    return 'Service must be an integer between 1 and 500';
+  }
   return null;
 }
 

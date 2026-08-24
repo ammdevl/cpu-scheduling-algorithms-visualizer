@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'Algorithms',
   description:
     'Simulate FCFS, Round Robin, SPN, SRT, HRRN and Feedback scheduling on your own process set with step-by-step Gantt tables and metrics.',
+  alternates: {
+    canonical: '/algorithms/',
+  },
 };
 
 export const viewport: Viewport = {
@@ -15,7 +18,7 @@ export const viewport: Viewport = {
 
 export default function AlgorithmsPage() {
   return (
-    <main className={styles.page}>
+    <main id="main" className={styles.page}>
       <Reveal>
         <header className={styles.header}>
           <h1>Scheduling algorithms</h1>

@@ -14,7 +14,7 @@ const LINKS = [
 export function NavBar() {
   const pathname = usePathname();
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} aria-label="Main navigation">
       <div className={styles.inner}>
         <Link href="/" className={styles.brand}>
           <svg viewBox="0 0 64 64" className={styles.brandIcon} aria-hidden="true">
