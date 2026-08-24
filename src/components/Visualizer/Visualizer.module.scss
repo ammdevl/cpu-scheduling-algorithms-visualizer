@@ -218,9 +218,25 @@
   padding: 1px 6px;
 }
 
-.queueBox {
+.ganttQueue {
+  border-top: 1px solid var(--border);
+  padding-top: 0.9rem;
   display: grid;
   gap: 0.45rem;
+}
+
+.queueHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.queueTime {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary);
 }
 
 .queueTitle {
@@ -234,13 +250,17 @@
   font-size: 0.85rem;
   color: var(--text-muted);
   font-style: italic;
+  align-self: center;
 }
 
 .queueChips {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  align-content: flex-start;
   gap: 0.4rem;
   flex-wrap: wrap;
+  height: 64px;
+  overflow-y: auto;
 }
 
 .queueChip {
@@ -283,8 +303,12 @@
 
 .narration {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
   gap: 0.4rem;
+  height: 36px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .doneBadge {
@@ -294,6 +318,8 @@
   font-weight: 700;
   border-radius: 999px;
   padding: 4px 12px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .eventChip {
@@ -302,6 +328,8 @@
   padding: 4px 12px;
   background: var(--surface-2);
   color: var(--text-muted);
+  flex-shrink: 0;
+  white-space: nowrap;
 
   &[data-kind='arrive'] {
     background: var(--primary-soft);

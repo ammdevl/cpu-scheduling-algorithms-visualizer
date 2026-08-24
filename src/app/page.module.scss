@@ -1,61 +1,113 @@
 @use '@/styles/tokens';
 
 .page {
-  width: min(1080px, 100% - 2rem);
+  width: min(1120px, 100% - 2rem);
   margin-inline: auto;
-  padding-block: 3.5rem 4rem;
+  padding-block: 0 3rem;
   display: grid;
-  gap: 4rem;
+  gap: 3rem;
+
+  @include tokens.md-up {
+    padding-block: 0 4.5rem;
+    gap: 4.5rem;
+  }
 }
 
 .hero {
+  position: relative;
   text-align: center;
   display: grid;
   justify-items: center;
+  align-content: center;
   gap: 1.1rem;
-  padding-block: 1rem;
+  padding-block: 2rem 4.5rem;
+  min-height: min(calc(100svh - 66px), 1080px);
 }
 
-.eyebrow {
-  font-size: 0.8rem;
+.blobA,
+.blobB {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.blobA {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: 8%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--primary) 22%, transparent),
+    transparent 70%
+  );
+}
+
+.blobB {
+  width: 380px;
+  height: 380px;
+  top: 40px;
+  right: 4%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 18%, transparent),
+    transparent 70%
+  );
+}
+
+.badge {
+  font-size: 0.78rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
   color: var(--primary);
+  background: var(--primary-soft);
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+  border-radius: 999px;
+  padding: 6px 16px;
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
   letter-spacing: -0.03em;
-  line-height: 1.12;
-  max-width: 22ch;
+  line-height: 1.08;
+  max-width: 21ch;
 }
 
 .accent {
-  color: var(--primary);
+  background: linear-gradient(120deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .lede {
-  max-width: 60ch;
+  max-width: 58ch;
   color: var(--text-muted);
   line-height: 1.65;
-  font-size: 1.02rem;
+  font-size: 1.05rem;
 }
 
 .cta {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 0.75rem;
+  column-gap: 0.9rem;
 }
 
 .primary,
 .secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
   border-radius: 999px;
-  padding: 11px 26px;
+  padding: 12px 28px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
@@ -80,51 +132,244 @@
   }
 }
 
-.sectionTitle {
-  font-size: 1.3rem;
-  letter-spacing: -0.01em;
-  margin-bottom: 1.1rem;
+.micro {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+  line-height: 1.5;
 }
 
-.features {
-  border-top: 1px solid var(--border);
+.mockReveal {
+  width: 100%;
 }
 
-.featureRow {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 1.1rem;
-  padding: 1.5rem 0.25rem;
+.mock {
+  position: relative;
+  width: min(940px, 100%);
+  margin-inline: auto;
+  margin-top: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 0 1.25rem 1.4rem;
+  text-align: left;
+}
+
+.mockBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 4px;
   border-bottom: 1px solid var(--border);
-  align-items: start;
+  margin-bottom: 0.9rem;
 }
 
-.num {
+.mockDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface-2);
+
+  &:nth-child(1) {
+    background: #ff5f57;
+  }
+
+  &:nth-child(2) {
+    background: #febc2e;
+  }
+
+  &:nth-child(3) {
+    background: #28c840;
+  }
+}
+
+.mockUrl {
+  margin-inline: auto;
+  font-size: 0.72rem;
   font-family: var(--font-geist-mono), monospace;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--primary);
-  padding-top: 2px;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 3px 40px;
 }
 
-.featureBody {
+.mockToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.mockSelect {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  background: var(--surface-2);
+}
+
+.mockRun {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary-contrast);
+  background: var(--primary);
+  border-radius: 8px;
+  padding: 6px 16px;
+}
+
+.mockGrid {
   display: grid;
-  gap: 0.4rem;
+  grid-template-columns: 34px repeat(10, 1fr);
+  gap: 4px;
+  align-items: center;
+}
+
+.mockCorner {
+  height: 18px;
+}
+
+.mockTime {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.mockLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-geist-mono), monospace;
+  color: var(--text);
+}
+
+.mockCell {
+  height: 22px;
+  border-radius: 4px;
+  background: var(--surface-2);
+}
+
+.mockChip {
+  position: absolute;
+  right: -14px;
+  bottom: -18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  padding: 10px 18px;
+  display: grid;
+  gap: 1px;
+  text-align: center;
+
+  span {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+
+  strong {
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 1.25rem;
+    color: var(--accent);
+  }
+}
+
+.sectionHead {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  text-align: center;
+  justify-items: center;
+
+  h2 {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    letter-spacing: -0.02em;
+  }
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--primary);
+}
+
+.capabilities {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @include tokens.md-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  > div {
+    height: 100%;
+  }
+}
+
+.capability {
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: tokens.$radius-lg;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem 1.5rem 1.4rem;
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+  }
 
   h3 {
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     letter-spacing: -0.01em;
   }
 
   p {
     color: var(--text-muted);
-    font-size: 0.92rem;
-    line-height: 1.65;
-    max-width: 68ch;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }
 
-.chips {
+.capEyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 11px;
+}
+
+.algos {
   display: grid;
   gap: 0.8rem;
   grid-template-columns: 1fr;
@@ -138,35 +383,49 @@
   }
 }
 
-.chip {
+.algo {
   height: 100%;
   border: 1px solid var(--border);
   border-radius: tokens.$radius-md;
   background: var(--surface);
-  padding: 0.95rem 1.1rem;
+  padding: 1rem 1.15rem;
   display: grid;
-  gap: 0.25rem;
+  gap: 0.3rem;
   align-content: center;
-  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  justify-items: start;
+  transition: border-color 0.15s ease, transform 0.15s ease;
 
   &:hover {
     border-color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
   }
 
-  span {
-    font-weight: 600;
-    font-size: 0.92rem;
-  }
-
-  em {
-    font-style: normal;
+  code {
+    font-family: var(--font-geist-mono), monospace;
     font-size: 0.75rem;
+    background: var(--surface-2);
+    border-radius: 4px;
+    padding: 1px 7px;
     color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
+}
+
+.algoName {
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+
+.algoMode {
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.algoModePreempt {
+  color: var(--warn);
 }
 
 .steps {
@@ -175,6 +434,7 @@
   display: grid;
   gap: 1.25rem;
   max-width: 72ch;
+  margin-inline: auto;
 
   li {
     counter-increment: step;
@@ -243,5 +503,74 @@
     text-align: left;
     font-family: var(--font-geist-sans), sans-serif;
     color: var(--text-muted);
+  }
+}
+
+.ctaBand {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-soft);
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(560px 200px at 50% -60px, color-mix(in srgb, var(--primary) 14%, transparent), transparent 70%),
+      radial-gradient(color-mix(in srgb, var(--primary) 9%, transparent) 1px, transparent 1px);
+    background-size:
+      auto,
+      22px 22px;
+  }
+
+  h2 {
+    position: relative;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  p {
+    position: relative;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .cta {
+    position: relative;
+    margin-top: 0.5rem;
+  }
+}
+
+.bandMicro {
+  position: relative;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.bandBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  border-radius: 999px;
+  padding: 12px 30px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s ease, filter 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
   }
 }

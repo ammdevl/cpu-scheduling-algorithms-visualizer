@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NavBar } from "@/components/NavBar/NavBar";
+import { Footer } from "@/components/Footer/Footer";
 import "./globals.scss";
 
 const geistSans = Geist({
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "CPU Scheduling Visualizer Algorithms",
-    template: "%s · CPU Scheduling Visualizer Algorithms",
+    default: "CPU Scheduling Algorithms Visualizer",
+    template: "%s · CPU Scheduling Algorithms Visualizer",
   },
   description:
     "Interactive visualizer for CPU scheduling algorithms: FCFS, Round Robin, SPN, SRT, HRRN and Feedback — with step-by-step Gantt tables and turnaround metrics.",
@@ -33,9 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <NavBar />
         {children}
-        <footer className="siteFooter">
-          © {new Date().getFullYear()} CPU Scheduling Algorithms Visualizer. All rights reserved.
-        </footer>
+        <Footer />
       </body>
     </html>
   );

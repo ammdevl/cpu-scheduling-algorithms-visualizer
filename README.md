@@ -1,4 +1,10 @@
-# CPU Scheduling Visualizer Algorithms
+# CPU Scheduling Algorithms Visualizer
+
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://www.typescriptlang.org)
+[![Zustand](https://img.shields.io/badge/Zustand-4-FF4154?logo=zustand)](https://zustand.pmnd.rs)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss)](https://tailwindcss.com)
+[![GitHub](https://img.shields.io/badge/GitHub-ammdevl-181717?logo=github)](https://github.com/ammdevl)
 
 An interactive web app for learning CPU scheduling algorithms. Enter a process
 workload, pick a policy, and watch the simulation unfold tick by tick — with

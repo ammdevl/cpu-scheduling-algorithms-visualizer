@@ -16,6 +16,7 @@ import { ProcessEditor } from '../ProcessEditor/ProcessEditor';
 import { GanttTable } from '../GanttTable/GanttTable';
 import { MetricsTable } from '../MetricsTable/MetricsTable';
 import { VisualizerSkeleton } from '../VisualizerSkeleton/VisualizerSkeleton';
+import { Reveal } from '../Reveal/Reveal';
 import styles from './Visualizer.module.scss';
 
 const SPEEDS = [
@@ -130,33 +131,36 @@ export function Visualizer() {
       </aside>
 
       <section className={styles.results}>
-        <div className={styles.panel}>
-          <div className={styles.theoryHead}>
-            <h2>How {meta.name} works</h2>
-            <span
-              className={`${styles.badge} ${
-                meta.decisionMode === 'preemptive' ? styles.badgePreempt : ''
-              }`}
-            >
-              {meta.decisionMode}
-            </span>
-            <span className={styles.badge}>
-              <code>{meta.selectionFunction}</code>
-            </span>
+        <Reveal>
+          <div className={styles.panel}>
+            <div className={styles.theoryHead}>
+              <h2>How {meta.name} works</h2>
+              <span
+                className={`${styles.badge} ${
+                  meta.decisionMode === 'preemptive' ? styles.badgePreempt : ''
+                }`}
+              >
+                {meta.decisionMode}
+              </span>
+              <span className={styles.badge}>
+                <code>{meta.selectionFunction}</code>
+              </span>
+            </div>
+            <p className={styles.blurb}>{meta.blurb}</p>
+            <ol className={styles.steps}>
+              {meta.how.map((step, i) => (
+                <li key={i}>{step}</li>
+              ))}
+            </ol>
+            <p className={styles.note}>{meta.note}</p>
           </div>
-          <p className={styles.blurb}>{meta.blurb}</p>
-          <ol className={styles.steps}>
-            {meta.how.map((step, i) => (
-              <li key={i}>{step}</li>
-            ))}
-          </ol>
-          <p className={styles.note}>{meta.note}</p>
-        </div>
+        </Reveal>
 
-        <div className={styles.panel}>
-          <div className={styles.simHead}>
-            <h2>Step-by-step simulation</h2>
-            <span className={styles.clock}>
+        <Reveal delay={80}>
+          <div className={styles.panel}>
+            <div className={styles.simHead}>
+              <h2>Step-by-step simulation</h2>
+              <span className={styles.clock}>
               t = {clock} <em>/ {makespan}</em>
             </span>
           </div>
@@ -255,51 +259,24 @@ export function Visualizer() {
             </div>
           </div>
 
-          <div className={styles.queueBox}>
-            <span className={styles.queueTitle}>Ready queue</span>
-            {frame.queue.length === 0 ? (
-              <span className={styles.queueEmpty}>empty</span>
-            ) : (
-              <div className={styles.queueChips}>
-                {frame.queue.map((e) => {
-                  const idx = processes.findIndex((p) => p.id === e.pid);
-                  return (
-                    <span key={e.pid} className={styles.queueChip}>
-                      <i
-                        className={styles.queueDot}
-                        style={{ background: `var(--p${(idx >= 0 ? idx : 0) % 8})` }}
-                      />
-                      {e.pid}
-                      {e.level !== undefined && <em>L{e.level}</em>}
-                      {e.remaining !== undefined && (
-                        <small>rem {e.remaining}</small>
-                      )}
-                    </span>
-                  );
-                })}
-                <span className={styles.queueArrow}>← next</span>
-              </div>
-            )}
-          </div>
-
-          {(frame.events.length > 0 || frame.justCompleted.length > 0) && (
-            <div className={styles.narration}>
-              {frame.justCompleted.map((pid) => (
-                <span key={pid} className={styles.doneBadge}>
-                  ✓ {pid} finished at t={clock}
+          <div className={styles.narration} aria-live="polite">
+            {frame.justCompleted.map((pid) => (
+              <span key={pid} className={styles.doneBadge}>
+                ✓ {pid} finished at t={clock}
+              </span>
+            ))}
+            {frame.events
+              .filter((e) => e.kind !== 'complete')
+              .map((e, i) => (
+                <span key={i} className={styles.eventChip} data-kind={e.kind}>
+                  {e.detail}
                 </span>
               ))}
-              {frame.events
-                .filter((e) => e.kind !== 'complete')
-                .map((e, i) => (
-                  <span key={i} className={styles.eventChip} data-kind={e.kind}>
-                    {e.detail}
-                  </span>
-                ))}
-            </div>
-          )}
-        </div>
+          </div>
+          </div>
+        </Reveal>
 
+        <Reveal delay={120}>
         <div className={styles.panel}>
           <h2>Gantt chart</h2>
           <p className={styles.caption}>
@@ -312,9 +289,42 @@ export function Visualizer() {
             revealUpTo={clock}
             highlightT={clock > 0 ? clock - 1 : null}
           />
+          <div className={styles.ganttQueue}>
+            <div className={styles.queueHead}>
+              <span className={styles.queueTitle}>Ready queue</span>
+              <span className={styles.queueTime}>at t = {clock}</span>
+            </div>
+            <div className={styles.queueChips}>
+              {frame.queue.length === 0 ? (
+                <span className={styles.queueEmpty}>empty</span>
+              ) : (
+                <>
+                  {frame.queue.map((e) => {
+                    const idx = processes.findIndex((p) => p.id === e.pid);
+                    return (
+                      <span key={e.pid} className={styles.queueChip}>
+                        <i
+                          className={styles.queueDot}
+                          style={{ background: `var(--p${(idx >= 0 ? idx : 0) % 8})` }}
+                        />
+                        {e.pid}
+                        {e.level !== undefined && <em>L{e.level}</em>}
+                        {e.remaining !== undefined && (
+                          <small>rem {e.remaining}</small>
+                        )}
+                      </span>
+                    );
+                  })}
+                  <span className={styles.queueArrow}>← next</span>
+                </>
+              )}
+            </div>
+          </div>
         </div>
+        </Reveal>
 
         {finished ? (
+          <Reveal delay={80}>
           <div className={styles.panel}>
             <h2>Final metrics</h2>
             <div className={styles.stats}>
@@ -342,8 +352,10 @@ export function Visualizer() {
               Tr = finish − arrival · Tr/Ts = normalized turnaround · Waiting = Tr − Ts
             </p>
           </div>
+          </Reveal>
         ) : null}
 
+        <Reveal delay={80}>
         <details className={styles.logDetails}>
           <summary>Full execution timeline ({result.events.length} events)</summary>
           <ol className={styles.events}>
@@ -355,6 +367,7 @@ export function Visualizer() {
             ))}
           </ol>
         </details>
+        </Reveal>
       </section>
     </div>
   );
