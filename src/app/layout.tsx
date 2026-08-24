@@ -41,13 +41,13 @@ export const metadata: Metadata = {
   },
 };
 
-const themeInit = `(function(){try{var t=localStorage.getItem('csv-theme');if(t!=='dark'&&t!=='light'){t='light';}document.documentElement.dataset.theme=t;}catch(e){}})();`;
+const bootstrapScript = `(function(){try{var t=localStorage.getItem('csv-theme');if(t!=='dark'&&t!=='light'){t='light';}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="viewport"]');var s=Math.min(1,(window.screen.width||1280)/1280);if(m){m.setAttribute('content','width=1280, initial-scale='+s);}}catch(e){}})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        <script dangerouslySetInnerHTML={{ __html: bootstrapScript }} />
       </head>
       <body>
         <a href="#main" className="skipLink">

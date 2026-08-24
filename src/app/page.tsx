@@ -99,7 +99,7 @@ export default function Home() {
               <span className={styles.mockDot} />
               <span className={styles.mockDot} />
               <span className={styles.mockDot} />
-              <span className={styles.mockUrl}>cpu-scheduling.app/algorithms</span>
+              <span className={styles.mockUrl}>cpu-scheduling-algorithms-visualizer/algorithms</span>
             </div>
             <div className={styles.mockToolbar}>
               <span className={styles.mockSelect}>Round Robin · q = 1 ▾</span>
