@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import { Visualizer } from '@/components/Visualizer/Visualizer';
 import { Reveal } from '@/components/Reveal/Reveal';
 import styles from './page.module.scss';
@@ -10,10 +10,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/algorithms/',
   },
-};
-
-export const viewport: Viewport = {
-  width: 1280,
 };
 
 export default function AlgorithmsPage() {

@@ -1,13 +1,8 @@
-import type { Viewport } from 'next';
 import Link from 'next/link';
 import { ALGORITHMS, LECTURE_EXAMPLE } from '@/lib/scheduler';
 import { Reveal } from '@/components/Reveal/Reveal';
 import { ScrollHint } from '@/components/ScrollHint/ScrollHint';
 import styles from './page.module.scss';
-
-export const viewport: Viewport = {
-  width: 1280,
-};
 
 const jsonLd = {
   '@context': 'https://schema.org',

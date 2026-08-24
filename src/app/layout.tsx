@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NavBar } from "@/components/NavBar/NavBar";
 import { Footer } from "@/components/Footer/Footer";
 import "./globals.scss";
+
+export const viewport: Viewport = {
+  width: 1280,
+  initialScale: undefined,
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
