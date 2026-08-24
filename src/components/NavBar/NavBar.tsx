@@ -35,7 +35,7 @@ export function NavBar() {
               <line x1="52" y1="40" x2="58" y2="40" />
             </g>
           </svg>
-          CPU Scheduling Algorithms Visualizer
+          <span>CPU Scheduling Algorithms Visualizer</span>
         </Link>
         <div className={styles.links}>
           {LINKS.map((l) => {

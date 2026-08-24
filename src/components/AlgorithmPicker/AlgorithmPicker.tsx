@@ -30,18 +30,18 @@ export function AlgorithmPicker() {
       </label>
       {algorithm === 'rr' && (
         <label className={styles.field}>
-          <span className={styles.label}>
-            Time quantum <code>q = {quantum}</code>
-          </span>
-          <input
-            type="range"
-            min={1}
-            max={20}
-            step={1}
+          <span className={styles.label}>Time quantum</span>
+          <select
             value={quantum}
             onChange={(e) => setQuantum(Number(e.target.value))}
             aria-label="Round Robin time quantum"
-          />
+          >
+            {Array.from({ length: 20 }, (_, i) => i + 1).map((q) => (
+              <option key={q} value={q}>
+                q = {q}
+              </option>
+            ))}
+          </select>
         </label>
       )}
       {algorithm === 'feedback' && (
