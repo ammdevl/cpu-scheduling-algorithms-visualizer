@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
 - `trailingSlash: true` — emits directory-style URLs
   (`out/algorithms/index.html`), which every static host serves correctly at
   `/algorithms/` (with a redirect from `/algorithms`).
+- A `postbuild` step (`scripts/fix-viewport.mjs`) rewrites the emitted
+  viewport meta from `width=1280, initial-scale=1` (Next injects the default
+  scale) to `width=1280` — without it, phones render the desktop layout at
+  100% zoom and only the top-left corner is visible. With no `initial-scale`,
+  browsers auto-fit the page to the screen.
 
 Local preview of the production build:
 
