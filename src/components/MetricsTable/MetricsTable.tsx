@@ -13,6 +13,10 @@ export function MetricsTable({ processes, result }: MetricsTableProps) {
   return (
     <div className={styles.scroll}>
       <table className={styles.table}>
+        <caption className="srOnly">
+          Per-process scheduling metrics: arrival, service, finish, turnaround, normalized
+          turnaround and waiting time
+        </caption>
         <thead>
           <tr>
             <th>Process</th>

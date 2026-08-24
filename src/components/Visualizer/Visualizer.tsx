@@ -100,7 +100,7 @@ export function Visualizer() {
           <ProcessEditor />
         </aside>
         <section className={styles.results}>
-          <div className={`${styles.panel} ${styles.errorPanel}`}>
+          <div className={`${styles.panel} ${styles.errorPanel}`} role="alert">
             <h2>Cannot simulate</h2>
             <p>{error}</p>
           </div>

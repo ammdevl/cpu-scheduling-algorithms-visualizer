@@ -44,12 +44,14 @@ export function ProcessEditor() {
                     <input
                       type="number"
                       min={0}
+                      max={999}
                       step={1}
                       value={p.arrival}
                       aria-label={`Arrival time of process ${i + 1}`}
                       onChange={(e) => {
                         const v = e.target.valueAsNumber;
-                        if (Number.isFinite(v)) updateProcess(i, { arrival: Math.max(0, Math.trunc(v)) });
+                        if (Number.isFinite(v))
+                          updateProcess(i, { arrival: Math.min(999, Math.max(0, Math.trunc(v))) });
                       }}
                     />
                   </td>
@@ -57,12 +59,14 @@ export function ProcessEditor() {
                     <input
                       type="number"
                       min={1}
+                      max={500}
                       step={1}
                       value={p.service}
                       aria-label={`Service time of process ${i + 1}`}
                       onChange={(e) => {
                         const v = e.target.valueAsNumber;
-                        if (Number.isFinite(v)) updateProcess(i, { service: Math.max(1, Math.trunc(v)) });
+                        if (Number.isFinite(v))
+                          updateProcess(i, { service: Math.min(500, Math.max(1, Math.trunc(v))) });
                       }}
                     />
                   </td>
@@ -85,9 +89,9 @@ export function ProcessEditor() {
         </table>
       </div>
       {processes.some((p) => processRowError(p, processes)) && (
-        <p className={styles.error}>
+        <p className={styles.error} role="alert">
           Fix the highlighted rows — names must be unique and times must be whole numbers
-          (arrival ≥ 0, service ≥ 1).
+          (arrival 0–999, service 1–500).
         </p>
       )}
       <div className={styles.footer}>

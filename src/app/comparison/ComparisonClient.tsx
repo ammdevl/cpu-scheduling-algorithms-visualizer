@@ -78,7 +78,7 @@ export function ComparisonClient() {
   }
 
   return (
-    <main className={styles.page}>
+    <main id="main" className={styles.page}>
       <Reveal>
         <header className={styles.header}>
           <h1>Algorithm comparison</h1>
@@ -102,6 +102,10 @@ export function ComparisonClient() {
             <h2>Averages across algorithms</h2>
             <div className={styles.scroll}>
               <table className={styles.compare}>
+                <caption className="srOnly">
+                  Average turnaround, normalized turnaround, waiting time and makespan for
+                  every scheduling algorithm on the current workload
+                </caption>
                 <thead>
                   <tr>
                     <th>Algorithm</th>

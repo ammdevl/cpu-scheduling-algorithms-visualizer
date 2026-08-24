@@ -26,12 +26,19 @@ export function GanttTable({ result, processes, revealUpTo, highlightT }: GanttT
   return (
     <div className={styles.scroll}>
       <table className={styles.table}>
+        <caption className="srOnly">
+          Gantt chart with one row per process and one column per time unit; a filled cell
+          means the process owns the CPU during that interval
+        </caption>
         <thead>
           <tr>
-            <th className={styles.corner}>Process</th>
+            <th className={styles.corner} scope="col">
+              Process
+            </th>
             {times.map((t) => (
               <th
                 key={t}
+                scope="col"
                 className={`${styles.time} ${t === highlightT ? styles.timeActive : ''}`}
               >
                 {t + 1}
