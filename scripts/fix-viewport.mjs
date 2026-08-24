@@ -1,8 +1,9 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const BROKEN = 'content="width=1280, initial-scale=1"';
-const FIXED = 'content="width=1280"';
+const BROKEN = 'width=1280, initial-scale=1';
+const FIXED = 'width=1280';
+const EXTENSIONS = new Set(['.html', '.js', '.txt']);
 
 function walk(dir) {
   let changed = 0;
@@ -10,10 +11,10 @@ function walk(dir) {
     const path = join(dir, entry.name);
     if (entry.isDirectory()) {
       changed += walk(path);
-    } else if (entry.name.endsWith('.html')) {
-      const html = readFileSync(path, 'utf8');
-      if (html.includes(BROKEN)) {
-        writeFileSync(path, html.replaceAll(BROKEN, FIXED));
+    } else if (EXTENSIONS.has(entry.name.slice(entry.name.lastIndexOf('.')))) {
+      const content = readFileSync(path, 'utf8');
+      if (content.includes(BROKEN)) {
+        writeFileSync(path, content.replaceAll(BROKEN, FIXED));
         changed += 1;
       }
     }
@@ -22,4 +23,4 @@ function walk(dir) {
 }
 
 const count = walk('out');
-console.log(`viewport fix: rewrote ${count} html file(s)`);
+console.log(`viewport fix: scrubbed ${count} file(s)`);

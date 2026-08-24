@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import { ComparisonClient } from './ComparisonClient';
 
 export const metadata: Metadata = {
@@ -8,10 +8,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/comparison/',
   },
-};
-
-export const viewport: Viewport = {
-  width: 1280,
 };
 
 export default function ComparisonPage() {
