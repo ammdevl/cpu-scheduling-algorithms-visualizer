@@ -324,7 +324,6 @@ export function Visualizer() {
         </Reveal>
 
         {finished ? (
-          <Reveal delay={80}>
           <div className={styles.panel}>
             <h2>Final metrics</h2>
             <div className={styles.stats}>
@@ -352,7 +351,6 @@ export function Visualizer() {
               Tr = finish − arrival · Tr/Ts = normalized turnaround · Waiting = Tr − Ts
             </p>
           </div>
-          </Reveal>
         ) : null}
 
         <Reveal delay={80}>
